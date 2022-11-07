@@ -6,11 +6,19 @@
         <title>Draw Me?</title>
     </head>
     <body>
-        <button id ="question">How detailed do you want your Picasso to be?</button><br><br>
+        <button id ="question">How detailed do you want your Picasso to be?</button> <button id="reset">Start over and make a new Pablo!</button><br>
+        <em>For the best experience, please zoom out!</em><br><br>
 
         <div id="container"></div>
         <script>
-            
+            function get_random_color() {
+                function c() {
+                    var hex = Math.floor(Math.random()*256).toString(16);
+                    return ("0"+String(hex)).substr(-2); // pad with zero
+                }
+                return "#"+c()+c()+c();
+            }
+
             let container = document.querySelector('container');
             container = document.createElement('div');
             container.id = "main";
@@ -47,11 +55,20 @@
             
             for (const box of boxes) {
                 box.addEventListener('mouseover', (e) => {
-                    box.style.backgroundColor = "fuchsia";
+                    box.style.backgroundColor = get_random_color();
                     })
             }  
 
+            //reset button
+            const resetButton = document.querySelector('#reset'); 
+            resetButton.addEventListener('click', (e) => {
+                for (const box of boxes) {
+                    box.style.backgroundColor = "white";
+                }
+                })
 
+
+            //question button for grid #
             const questionButton = document.querySelector('#question');
             questionButton.addEventListener('click', (e) => {
                 let x = prompt("Please enter a number ranging from 1 to 100.", "");
@@ -96,6 +113,11 @@
                     }
                     newGrid(document.body);
                     
+                    for (const box of boxes) {
+                    box.addEventListener('mouseover', (e) => {
+                    box.style.backgroundColor = get_random_color();
+                    })
+            }
                     
                 } else {alert("Sorry, please enter a number that's between 1 and 100!")}
                 
