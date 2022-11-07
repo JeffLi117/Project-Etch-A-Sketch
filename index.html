@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <title>Draw Me?</title>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script>
+            
+            const container = document.querySelector('container');
+            function grid(t) {
+                let container = document.createElement('div');
+                container.id = "main";
+                container.classname = "container";
+
+                for (i = 0; i < 25; i++) {
+                    let row = document.createElement('div');
+                    row.className = "row";
+                    row.id = "row" + i;
+
+                    for (j = 0; j < 25; j++) {
+                        let box = document.createElement('div');
+                        box.className = "box";
+                        row.appendChild(box);
+                    }
+                    container.appendChild(row);
+                }
+                t.appendChild(container);
+            }
+
+            grid(document.body);
+
+
+
+            const boxes = document.getElementsByClassName('box');
+            
+            boxes[0].addEventListener('mouseover', (e) => {
+                box.style.backgroundColor = "blue";
+                }
+            )     
+            
+            for (const box of boxes) {
+                box.addEventListener('mouseover', (e) => {
+                    box.style.backgroundColor = "blue";
+                    })
+            }  
+        </script>
+    </body>
+</html>
