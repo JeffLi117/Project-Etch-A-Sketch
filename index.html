@@ -11,10 +11,11 @@
         <div id="container"></div>
         <script>
             
-            const container = document.querySelector('container');
+            let container = document.querySelector('container');
+            container = document.createElement('div');
+            container.id = "main";
             function grid(t) {
-                let container = document.createElement('div');
-                container.id = "main";
+                
                 container.classname = "container";
 
                 for (i = 0; i < 25; i++) {
@@ -69,9 +70,9 @@
                     }
                     //inputs new grid with user prompted answer "x"
                     function newGrid(test) {
-                    let newContainer = document.createElement('div');
+                    /*let newContainer = document.createElement('div');
                     newContainer.id = "main";
-                    newContainer.classname = "newContainer";
+                    newContainer.classname = "newContainer";*/
 
                     for (i = 0; i < x; i++) {
                         let row = document.createElement('div');
@@ -83,9 +84,9 @@
                         box.className = "box";
                         row.appendChild(box);
                     }
-                    newContainer.appendChild(row);
+                    container.appendChild(row);
                     }
-                    test.appendChild(newContainer);
+                    test.appendChild(container);
                     }
                     newGrid(document.body);
                 } else {alert("Sorry, please enter a number that's between 1 and 100!")}
