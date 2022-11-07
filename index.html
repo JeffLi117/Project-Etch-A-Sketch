@@ -6,6 +6,8 @@
         <title>Draw Me?</title>
     </head>
     <body>
+        <button id ="question">How detailed do you want your Picasso to be?</button><br><br>
+
         <div id="container"></div>
         <script>
             
@@ -32,8 +34,6 @@
 
             grid(document.body);
 
-
-
             const boxes = document.getElementsByClassName('box');
             
             boxes[0].addEventListener('mouseover', (e) => {
@@ -43,9 +43,54 @@
             
             for (const box of boxes) {
                 box.addEventListener('mouseover', (e) => {
-                    box.style.backgroundColor = "blue";
+                    box.style.backgroundColor = "fuchsia";
                     })
             }  
+
+
+            const questionButton = document.querySelector('#question');
+            questionButton.addEventListener('click', (e) => {
+                let x = prompt("Please enter a number between 1 and 100.", "");
+                if (x >= 1 && x <= 100) {
+                    // removes initial grid boxes
+                    var elements = document.getElementsByClassName('box');
+                    for (var z = elements.length - 1; z >= 0; z--) {
+                        elements[z].parentNode.removeChild(elements[z]);
+                    }
+                    // removes initial grid rows
+                    var lines = document.getElementsByClassName('row'); 
+                    for (var y = lines.length - 1; y >= 0; y--) {
+                        lines[y].parentNode.removeChild(lines[y]);
+                    }
+                    // removes initial container 
+                    var initContainer = document.getElementById('container');
+                    for (var v = initContainer.length - 1; v >= 0; v--) {
+                        initContainer[v].parentNode.removeChild(initContainer[v]);
+                    }
+                    //inputs new grid with user prompted answer "x"
+                    function newGrid(test) {
+                    let newContainer = document.createElement('div');
+                    newContainer.id = "main";
+                    newContainer.classname = "newContainer";
+
+                    for (i = 0; i < x; i++) {
+                        let row = document.createElement('div');
+                        row.className = "row";
+                        row.id = "row" + i;
+
+                    for (j = 0; j < x; j++) {
+                        let box = document.createElement('div');
+                        box.className = "box";
+                        row.appendChild(box);
+                    }
+                    newContainer.appendChild(row);
+                    }
+                    test.appendChild(newContainer);
+                    }
+                    newGrid(document.body);
+                } else {alert("Sorry, please enter a number that's between 1 and 100!")}
+                
+            })
         </script>
     </body>
 </html>

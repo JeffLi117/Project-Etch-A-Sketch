@@ -4,10 +4,15 @@
     line-height:1em;
   }
   
-  .box {
+.box {
     display:inline-block;
     width:2em;
     height:2em;
     box-sizing:border-box;
     border:1px solid black; 
   }
+
+#main {
+    width: 960px;
+    height: 960px;
+}
