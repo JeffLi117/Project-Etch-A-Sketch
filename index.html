@@ -15,17 +15,20 @@
             container = document.createElement('div');
             container.id = "main";
             function grid(t) {
-                
+                let initPixels = 960/25 + "px";
                 container.classname = "container";
 
                 for (i = 0; i < 25; i++) {
                     let row = document.createElement('div');
                     row.className = "row";
+                    row.style.height = initPixels;
                     row.id = "row" + i;
 
                     for (j = 0; j < 25; j++) {
                         let box = document.createElement('div');
                         box.className = "box";
+                        box.style.height = initPixels;
+                        box.style.width = initPixels;
                         row.appendChild(box);
                     }
                     container.appendChild(row);
@@ -51,7 +54,7 @@
 
             const questionButton = document.querySelector('#question');
             questionButton.addEventListener('click', (e) => {
-                let x = prompt("Please enter a number between 1 and 100.", "");
+                let x = prompt("Please enter a number ranging from 1 to 100.", "");
                 if (x >= 1 && x <= 100) {
                     // removes initial grid boxes
                     var elements = document.getElementsByClassName('box');
@@ -68,20 +71,23 @@
                     for (var v = initContainer.length - 1; v >= 0; v--) {
                         initContainer[v].parentNode.removeChild(initContainer[v]);
                     }
+                    //calculates new pixel dimensions per box
+                    let newPixels = (960/x) + "px"
+                    
                     //inputs new grid with user prompted answer "x"
                     function newGrid(test) {
-                    /*let newContainer = document.createElement('div');
-                    newContainer.id = "main";
-                    newContainer.classname = "newContainer";*/
-
                     for (i = 0; i < x; i++) {
                         let row = document.createElement('div');
                         row.className = "row";
+                        row.style.height = newPixels;
                         row.id = "row" + i;
 
                     for (j = 0; j < x; j++) {
                         let box = document.createElement('div');
                         box.className = "box";
+                        //fits new grid boxes to original 960px
+                        box.style.height = newPixels;
+                        box.style.width = newPixels;
                         row.appendChild(box);
                     }
                     container.appendChild(row);
@@ -89,6 +95,8 @@
                     test.appendChild(container);
                     }
                     newGrid(document.body);
+                    
+                    
                 } else {alert("Sorry, please enter a number that's between 1 and 100!")}
                 
             })

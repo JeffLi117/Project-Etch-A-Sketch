@@ -1,15 +1,15 @@
 .row {
     /* border:1px solid black; */
-    height:2em;
+    height:39px;
     line-height:1em;
   }
   
 .box {
     display:inline-block;
-    width:2em;
-    height:2em;
+    width:39px;
+    height:39px;
     box-sizing:border-box;
-    border:1px solid black; 
+    border:1px solid black;
   }
 
 #main {
